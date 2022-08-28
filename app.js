@@ -4,13 +4,39 @@ import https from 'https'
 import http from 'http'
 import fs from 'fs'
 
+import {forwardRouter} from './routers.js'
+
 dotenv.config({ path: '.env' }); //환경 변수에 등록 
 console.log(`run mode : ${process.env.NODE_ENV}`);
 
 const app = express()
 
 console.log(process.env.WWW)
+console.log(`api forward : ${process.env.API_PROTOCOL} ${process.env.API_HOST} ${process.env.API_PORT} `)
+
+
 app.use('/', express.static(process.env.WWW));
+
+app.use('/api/*', forwardRouter({
+  hostname: process.env.API_HOST, 
+  port : process.env.API_PORT, 
+  protocol : process.env.API_PROTOCOL
+}));
+app.use('/threejs/*', forwardRouter({
+  hostname: process.env.API_HOST, 
+  port : process.env.API_PORT, 
+  protocol : process.env.API_PROTOCOL
+}));
+app.use('/elvis/*', forwardRouter({
+  hostname: process.env.API_HOST, 
+  port : process.env.API_PORT, 
+  protocol : process.env.API_PROTOCOL
+}));
+app.use('/com/*', forwardRouter({
+  hostname: process.env.API_HOST, 
+  port : process.env.API_PORT, 
+  protocol : process.env.API_PROTOCOL
+}));
 
 //순서 주의 맨 마지막에 나온다.
 app.all('*', (req, res) => {

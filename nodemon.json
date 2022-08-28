@@ -1,8 +1,7 @@
 {
     "ignore": ["package.json","./node_modules/*",
-      "./media/*",
-      "./webrtc/*",
-      "./tipAndTrick/*"
+    "test.http"
+      
     ],
     "exec": "babel-node app.js"
   }

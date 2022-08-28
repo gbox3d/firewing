@@ -1,0 +1,6 @@
+###  user login
+GET http://localhost:21030/api/v2/users
+
+###  user login
+GET http://localhost:21030/com/file/download?path=/home/gbox3d/work/eienus/camtous/server/dummy.jpg
+
