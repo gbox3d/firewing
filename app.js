@@ -4,7 +4,7 @@ import https from 'https'
 import http from 'http'
 import fs from 'fs'
 
-import {forwardRouter} from './routers.js'
+import {forwardRouter,forwardRouter_comfile} from './routers.js'
 
 dotenv.config({ path: '.env' }); //환경 변수에 등록 
 console.log(`run mode : ${process.env.NODE_ENV}`);
@@ -32,7 +32,7 @@ app.use('/elvis/*', forwardRouter({
   port : process.env.API_PORT, 
   protocol : process.env.API_PROTOCOL
 }));
-app.use('/com/*', forwardRouter({
+app.use('/com/*', forwardRouter_comfile({
   hostname: process.env.API_HOST, 
   port : process.env.API_PORT, 
   protocol : process.env.API_PROTOCOL
